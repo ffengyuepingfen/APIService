@@ -16,10 +16,10 @@ public enum DefaultAPIError: Error {
 
 func k_keyWindow() -> UIWindow? {
     if let w =  UIApplication.shared.connectedScenes
-        .compactMap { $0 as? UIWindowScene }.first?.windows.first {
+        .compactMap({ $0 as? UIWindowScene }).first?.windows.first {
             return w
         }
-    guard let w = UIApplication.shared.delegate?.window, let unwrapedWindow = w else {
+    guard let w = UIApplication.shared.delegate?.window else {
         return nil
     }
     return w

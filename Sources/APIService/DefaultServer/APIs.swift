@@ -71,7 +71,7 @@ extension DefaultConstants {
         })
     }
     
-    public static func sendRequestV2<T: APIRequest>(
+    public func sendRequestV2<T: APIRequest>(
         _ request: T,
         encoding: APIParameterEncoding? = nil,
         progressHandler: APIProgressHandler? = nil
