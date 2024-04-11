@@ -73,7 +73,6 @@ extension DefaultConstants {
     
     public static func sendRequestV2<T: APIRequest>(
         _ request: T,
-        plugins: [APIPlugin] = [CicPlugin()],
         encoding: APIParameterEncoding? = nil,
         progressHandler: APIProgressHandler? = nil
     ) async throws -> T.Response {
