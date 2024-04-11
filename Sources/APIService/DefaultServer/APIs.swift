@@ -71,6 +71,25 @@ extension DefaultConstants {
         })
     }
     
+    public static func sendRequestV2<T: APIRequest>(
+        _ request: T,
+        plugins: [APIPlugin] = [CicPlugin()],
+        encoding: APIParameterEncoding? = nil,
+        progressHandler: APIProgressHandler? = nil
+    ) async throws -> T.Response {
+        
+        try await withCheckedThrowingContinuation({ continuation in
+            APIService.sendRequest(request, plugins: plugins) { reponse in
+                switch reponse.result {
+                case let .success(res):
+                    continuation.resume(returning: res)
+                case let .failure(apiError):
+                    continuation.resume(throwing: apiError)
+                }
+            }
+        })
+    }
+    
     static func dealError(message: String) {
         
         DispatchQueue.main.async {
